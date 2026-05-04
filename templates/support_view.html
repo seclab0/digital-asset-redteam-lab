@@ -1,0 +1,1 @@
+{% extends 'base.html' %}{% block content %}<h2>Support Ticket Detail</h2><p>Local Stored XSS lab point.</p><h3>{{ ticket.title }}</h3><div class='card'>{{ ticket.message | safe }}</div>{% endblock %}
