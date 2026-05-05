@@ -1,45 +1,10 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>대시보드</h2>
-<p class='subtext'>본 검증은 로컬 테스트 환경에서 수행되며 실제 자산 및 외부 서비스와 연결되지 않습니다.</p>
-
+{% extends 'base.html' %}{% block content %}
+<h2>Dashboard</h2><p>This is a local intentionally vulnerable red team portfolio lab. No real assets, no real blockchain, and no external exchange integration are used.</p>
 <div class='grid'>
-  <div class='card'>
-    <h3>보유 자산</h3>
-    <p>사용자: {{ user.username }}</p>
-    <p>KRW: {{ user.krw_balance }}</p>
-    <p>BTC: {{ user.btc_balance }}</p>
-  </div>
-
-  <div class='card'>
-    <h3>출금 요청</h3>
-    <form id='withdraw-form'>
-      <input name='amount' value='1000'>
-      <button>출금</button>
-    </form>
-    <pre id='withdraw-result'></pre>
-  </div>
-
-  <div class='card'>
-    <h3>API 관리</h3>
-    <p>API 키: <span id='api-key-display'>{{ api_key if api_key != 'Not issued' else '미발급' }}</span></p>
-    <button id='create-api-key'>API 키 발급</button>
-    <button id='api-withdraw-test'>API 출금 테스트</button>
-    <pre id='api-result'></pre>
-  </div>
-
-  <div class='card'>
-    <h3>안내</h3>
-    <p>본 환경은 로그인 세션 기반 인증과 API Key 기반 접근 구조를 포함한 테스트 환경입니다.</p>
-    <p>출금 요청, API Key 발급, 이벤트 로그 확인 기능을 통해 요청 흐름을 확인할 수 있습니다.</p>
-  </div>
-</div>
-
-<div class='links'>
-  <a href='/support'>문의 게시판</a>
-  <a href='/lab/events'>이벤트 로그</a>
-  <a href='/openapi.json'>API 문서 확인</a>
-</div>
-
-<script src='/static/app.js'></script>
+<div class='card'><h3>Virtual Balance</h3><p>User: {{ user.username }}</p><p>KRW: {{ user.krw_balance }}</p><p>BTC: {{ user.btc_balance }}</p></div>
+<div class='card'><h3>Web Withdrawal</h3><form id='withdraw-form'><input name='amount' value='1000'><button>Withdraw</button></form><pre id='withdraw-result'></pre></div>
+<div class='card'><h3>Developer API Beta</h3><p>Current API Key: <span id='api-key-display'>{{ api_key }}</span></p><button id='create-api-key'>Create API Key</button><button id='api-withdraw-test'>API Withdraw Test</button><pre id='api-result'></pre></div>
+<div class='card'><h3>Security Lab Notes</h3><p>Intentionally vulnerable: Stored XSS, predictable API key, no expiry/scope/rate-limit.</p><p>Discovery hint: see <a href='/openapi.json'>OpenAPI Document</a></p></div>
+<div class='card'><h3>Attack Chain Overview</h3><p>Stored XSS → Authenticated Browser Context → API Key Generation → API Key-Only Withdrawal → Persistent Access → Automation Scenario</p><p>저장형 XSS → 인증된 브라우저 컨텍스트 악용 → API Key 발급 → API Key 단독 출금 → 지속 접근 → 자동화 공격 시나리오</p><p><a href='/support'>Customer Support / 문의 게시판</a></p><p><a href='/lab/events'>Lab Events / 실습 이벤트 로그</a></p></div>
+</div><script src='/static/app.js'></script>
 {% endblock %}
